@@ -1,16 +1,15 @@
 module MixpanelMagicLamp
-  module Mixpanel
-
-    class << self
-      def where(*args)
-        ExpressionBuilder.new(*args)
-      end
-
-      def on(property)
-        "properties[\"#{property}\"]"
-      end
+  module ClassMethods
+    def where(*args)
+      ExpressionBuilder.new(*args)
     end
 
+    def on(property)
+      "properties[\"#{property}\"]"
+    end
+  end
+
+  module Mixpanel
     class ExpressionBuilder
       attr_reader :expression
 

@@ -3,7 +3,7 @@ require 'mixpanel_client'
 module MixpanelMagicLamp
   module Mixpanel
 
-    class Interface < Client
+    class Interface < ::Mixpanel::Client
       attr_reader :r, :e, :status
 
       def initialize(interval: nil, parallel: nil, unit: 'day', type: 'unique')

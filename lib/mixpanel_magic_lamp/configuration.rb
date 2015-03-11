@@ -1,4 +1,4 @@
-module Mixingpanel
+module MixpanelMagicLamp
   class << self
     attr_accessor :configuration
   end
