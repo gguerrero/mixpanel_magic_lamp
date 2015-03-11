@@ -1,0 +1,2 @@
+module MixpanelMagicLamp
+end
