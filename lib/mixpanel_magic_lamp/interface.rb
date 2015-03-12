@@ -1,8 +1,8 @@
 require 'mixpanel_client'
 
 module MixpanelMagicLamp
-  module Mixpanel
 
+  module InstanceMethods
     class Interface < ::Mixpanel::Client
       attr_reader :r, :e, :status
 
@@ -12,9 +12,9 @@ module MixpanelMagicLamp
           raise MixpanelMagicLamp::ApiKeyMissingError
         end
 
-        @parallel = parallel || MixpanelMagicLamp.configuration.parallel
-        @interval = interval || MixpanelMagicLamp.configuration.interval
-        @from     = (interval || MixpanelMagicLamp.configuration.interval).days.ago.to_date
+        @parallel = parallel.nil? ? MixpanelMagicLamp.configuration.parallel : parallel
+        @interval = interval.nil? ? MixpanelMagicLamp.configuration.interval : interval 
+        @from     = @interval.days.ago.to_date
         @to       = Date.today
         @unit     = unit
         @type     = type
@@ -45,7 +45,6 @@ module MixpanelMagicLamp
                        to_date: dates[:to].strftime('%Y-%m-%d') }.merge(options)
       end
 
-      private
       def run
         run_parallel_requests if parallel
       rescue => e
@@ -74,6 +73,6 @@ module MixpanelMagicLamp
       end
 
     end
-
   end
+
 end

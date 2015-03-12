@@ -1,7 +1,8 @@
 module MixpanelMagicLamp
+
   module ClassMethods
     def where(*args)
-      ExpressionBuilder.new(*args)
+      MixpanelMagicLamp::InstanceMethods::ExpressionBuilder.new(*args)
     end
 
     def on(property)
@@ -9,7 +10,7 @@ module MixpanelMagicLamp
     end
   end
 
-  module Mixpanel
+  module InstanceMethods
     class ExpressionBuilder
       attr_reader :expression
 
@@ -79,6 +80,6 @@ module MixpanelMagicLamp
         built_in == '()' ? '' : built_in
       end
     end
-
   end
+
 end
