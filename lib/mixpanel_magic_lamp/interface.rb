@@ -4,7 +4,7 @@ module MixpanelMagicLamp
 
   module InstanceMethods
     class Interface < ::Mixpanel::Client
-      attr_reader :r, :e, :status
+      attr_reader :responses, :e, :status
 
       def initialize(interval: nil, parallel: nil, unit: 'day', type: 'unique')
         if MixpanelMagicLamp.configuration.api_key.nil? or 
@@ -18,6 +18,9 @@ module MixpanelMagicLamp
         @to       = Date.today
         @unit     = unit
         @type     = type
+
+        @responses = []
+        @formatter = MixpanelMagicLamp::Formatter.new
 
         super api_key:    MixpanelMagicLamp.configuration.api_key,
               api_secret: MixpanelMagicLamp.configuration.api_secret,
