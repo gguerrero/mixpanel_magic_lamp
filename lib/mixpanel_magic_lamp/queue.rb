@@ -17,8 +17,10 @@ module MixpanelMagicLamp
 
     def process!
       self.each do |request|
+        next unless request[:status].nil?
         request[:status] = request[:request].response.code
-        if request[:status] < 200 or request[:status] > 299
+
+        if request[:request].response.success?
           request[:response] = JSON.parse(request[:request].response.body)
         else
           formatter = MixpanelMagicLamp::Formatter.new(request[:request])

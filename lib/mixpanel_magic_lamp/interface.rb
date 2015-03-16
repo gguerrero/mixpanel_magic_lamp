@@ -39,7 +39,7 @@ module MixpanelMagicLamp
       end
 
       def segmentation_interval(event, dates = {}, options = {})
-        dates = { from: dates[:from] || @from, to: dates[:to] || @to }
+        dates = { from: dates[:from].to_date || @from, to: dates[:to].to_date || @to }
 
         @queue.push request('segmentation',
                             { event: event,
