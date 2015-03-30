@@ -1,3 +1,64 @@
-# Mixpanel Magic Lamp :gem:
+# Mixpanel Magic Lamp
+
+[![Gem Version](https://badge.fury.io/rb/mixpanel_magic_lamp.svg)](http://badge.fury.io/rb/mixpanel_magic_lamp)
+
+## Install
+You can install this *gem* by
+
+```
+$ gem install mixpanel_magic_lamp
+```
+
+Or bundle it on your app by adding this line at your *Gemfile*
+
+```ruby
+gem 'mixpanel_magic_lamp'
+```
+
+## Configuration
+
+
+### Rails config generator
+Copy base config file on your **Rails app** by
+```bash
+rails generator mixpanel_magic_lamp:config
+```
+
+## Actions
+### Segementation
+### Segmentation by
+
+## Build your query
+### where
+### on
+### Builders
+* ```equals```
+* ```does_not_equal```
+* ```contains```
+* ```does_not_contain```
+* ```is_set```
+* ```is_not_set```
+
+
+## Your own interface
+
+
+## On top of mixpanel_client Gem
+This ORM is build on top [mixpanel_client](https://github.com/keolo/mixpanel_client#mixpanel-data-api-client) gem.
+
+### Monkey patching
+On this gem you'll find a ```Mixpanel::Client``` class monkey path to avoid exceptions raise
+when any of the parallel request fails, i.e all the request will be run and completed returning
+it correspondent HTTP status (error or success) and the body as usual.
+See it [here](https://github.com/gguerrero/mixpanel_magic_lamp/blob/master/lib/mixpanel_magic_lamp/client.rb).
+
+
+
+## Contribution
+If you have cool idea for improving this Gem or any bug fix just open a pull request and
+I'll be glad to have a look and merge it if seems fine.
+
+
+## License
 
 This project rocks and uses MIT-LICENSE.
