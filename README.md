@@ -2,6 +2,12 @@
 
 [![Gem Version](https://badge.fury.io/rb/mixpanel_magic_lamp.svg)](http://badge.fury.io/rb/mixpanel_magic_lamp)
 
+Rub the magic lamp and your desired Mixpanel ORM will appear!
+
+If you're using [Mixpanel](https://mixpanel.com/) for your web site analytics you probably thought
+in make reports exporting your data through any **Mixpanel API** client. This gem is your answer 
+for not overwarming your head with so many doc, and it will remind you to ```ActiveRecord```.
+
 ## Install
 You can install this *gem* by
 
@@ -46,10 +52,12 @@ rails generator mixpanel_magic_lamp:config
 ## On top of mixpanel_client Gem
 This ORM is build on top [mixpanel_client](https://github.com/keolo/mixpanel_client#mixpanel-data-api-client) gem.
 
+You'll find the oficial mixpanel info [here](https://mixpanel.com/docs/api-documentation/data-export-api#libs-ruby).
+
 ### Monkey patching
-On this gem you'll find a ```Mixpanel::Client``` class monkey path to avoid exceptions raise
-when any of the parallel request fails, i.e all the request will be run and completed returning
-it correspondent HTTP status (error or success) and the body as usual.
+On this gem you'll find a ```Mixpanel::Client``` class monkey patch to avoid exceptions raise
+when any of the parallel request fails, i.e all the requests will run until completion and return
+their correspondent HTTP status (error or success) and body as usual.
 See it [here](https://github.com/gguerrero/mixpanel_magic_lamp/blob/master/lib/mixpanel_magic_lamp/client.rb).
 
 
@@ -61,4 +69,4 @@ I'll be glad to have a look and merge it if seems fine.
 
 ## License
 
-This project rocks and uses MIT-LICENSE.
+This project rocks and uses [MIT-LICENSE](https://github.com/gguerrero/mixpanel_magic_lamp/blob/master/MIT-LICENSE).
