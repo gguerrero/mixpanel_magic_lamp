@@ -8,4 +8,6 @@ require 'mixpanel_magic_lamp/interface'
 
 # Include and extend the magic lamp
 Mixpanel.extend MixpanelMagicLamp::ClassMethods
-Mixpanel.include MixpanelMagicLamp::InstanceMethods
+class Mixpanel::Client
+  include MixpanelMagicLamp::InstanceMethods
+end
