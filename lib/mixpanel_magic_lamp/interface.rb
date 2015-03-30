@@ -52,9 +52,7 @@ module MixpanelMagicLamp
 
       def run!
         run_parallel_requests
-      rescue Mixpanel::HTTPError => e
-        puts e.message
-      ensure @queue.process!
+        @queue.process!
       end
 
     end

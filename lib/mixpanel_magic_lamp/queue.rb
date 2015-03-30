@@ -21,10 +21,10 @@ module MixpanelMagicLamp
         request[:status] = request[:request].response.code
 
         if request[:request].response.success?
-          request[:response] = JSON.parse(request[:request].response.body)
-        else
           formatter = MixpanelMagicLamp::Formatter.new(request[:request])
           request[:data] = formatter.convert format: request[:format]
+        else
+          request[:response] = JSON.parse(request[:request].response.body)
         end
       end
 
