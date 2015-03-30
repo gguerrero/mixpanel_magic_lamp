@@ -31,7 +31,6 @@
 # end
 #
 #
-require 'mixpanel_client'
 module Mixpanel
 
   class Client

@@ -1,3 +1,4 @@
+require 'mixpanel_client'
 require 'mixpanel_magic_lamp/configuration'
 require 'mixpanel_magic_lamp/engine' if defined? Rails
 require 'mixpanel_magic_lamp/client'
@@ -8,6 +9,6 @@ require 'mixpanel_magic_lamp/interface'
 
 # Include and extend the magic lamp
 Mixpanel.extend MixpanelMagicLamp::ClassMethods
-class Mixpanel::Client
+module Mixpanel
   include MixpanelMagicLamp::InstanceMethods
 end
