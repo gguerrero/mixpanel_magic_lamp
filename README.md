@@ -22,7 +22,20 @@ gem 'mixpanel_magic_lamp'
 ```
 
 ## Configuration
+To setup this gem you should add API keys and other config:
+```ruby
+MixpanelMagicLamp.configure do |config|
+  # Set your API Key/Secret
+  config.api_key     = "YOUR MIXPANEL API KEY"
+  config.api_secret  = "YOUR MIXPANEL API SECRET"
 
+  # Run query in parallel (recomended for better performance)
+  config.parallel = true
+
+  # Default interval on from/to dates when dates are not provided
+  config.interval = 30
+end
+```
 
 ### Rails config generator
 Copy base config file on your **Rails app** by
@@ -31,12 +44,43 @@ rails generator mixpanel_magic_lamp:config
 ```
 
 ## Actions
+Mixpanel API client has a lot of possible actions, so far this are the supported:
+
 ### Segementation
+
 ### Segmentation by
 
 ## Build your query
+The most interesting feature from this library is probably the query builder, that
+let you to build an 'activerecord' like query to run API queries, it will remind you to
+the Mixpanel UI:
+
 ### where
+Start any query with this keyword, and extend is as long as you need.
+This method accept a hash as first parameter where each pair of key/value are traslated
+to "key == value" (*equals_to*), a second parameter may change union word:
+```ruby
+Mixpanel.where(country: 'Spain', gender: 'Female').to_s
+=> "(properties[\"country\"] == \"Spain\" and properties[\"gender\"] == \"Female\")"
+
+Mixpanel.where({country: 'Spain', gender: 'Female'}, 'or').to_s
+=> "(properties[\"country\"] == \"Spain\" or properties[\"gender\"] == \"Female\")"
+```
+
+
+Then you may append any existent query build to complete your API query:
+```ruby
+Mixpanel.where(country: 'Spain').or.is_set('source').to_s
+=> "(properties[\"country\"] == \"Spain\") or (defined (properties[\"source\"]))"
+```
+
 ### on
+Use it as **by** statement on your UI, in order to group segmentation:
+```ruby
+Mixpanel.on('country')
+=> "properties[\"country\"]"
+``
+
 ### Builders
 * ```equals```
 * ```does_not_equal```
