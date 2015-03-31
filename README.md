@@ -79,7 +79,7 @@ Use it as **by** statement on your UI, in order to group segmentation:
 ```ruby
 Mixpanel.on('country')
 => "properties[\"country\"]"
-``
+```
 
 ### Builders
 * ```equals```
