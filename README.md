@@ -44,11 +44,53 @@ rails generator mixpanel_magic_lamp:config
 ```
 
 ## Actions
-Mixpanel API client has a lot of possible actions, so far this are the supported:
+Mixpanel API client has a lot of possible actions, so far these are the supported actions:
 
 ### Segementation
+Classic **Mixpanel** segmentation action, where you can specify *event name*, *from/to dates* and *any conditions* you want. Prepare and run as many request in parallel you need
 
+```ruby
+interface = Mixpanel::Interface.new
+
+page_visits_query = Mixpanel.where("product" => 'Finances')
+                            .and.is_set("subproduct")
+page_visits  = interface.segmentation('Page visit', { from: Data.parse('2015-01-31'),
+                                                      to: Date.today },
+                                                    { where: page_visits_query })
+
+
+login_clicks_query = Mixpanel.where("device_type" => 'mobile')
+login_clicks = interface.segmentation('Login', { from: Data.parse('2015-04-01'),
+                                                 to: Date.today },
+                                               { where: login_clicks_query })
+
+# Run all the queued queries
+interface.run!
+
+# Present your data...
+p page_visits[:data]
+p login_clicks[:data]
+```
+ 
 ### Segmentation by
+Same as **segmentation** but grouping the output by any property you want to.
+
+```ruby
+interface = Mixpanel::Interface.new
+
+page_visits_query = Mixpanel.where("product" => 'Finances')
+                            .and.is_set("subproduct")
+page_visits  = interface.segmentation('Page visit', { from: Data.parse('2015-01-31'),
+                                                      to: Date.today },
+                                                    { where: page_visits_query,
+                                                      on: Mixpanel.on('device_type') })
+
+# Run all the queued queries
+interface.run!
+
+# Present your data...
+p page_visits[:data]
+```
 
 ## Build your query
 The most interesting feature from this library is probably the query builder, that
@@ -59,6 +101,7 @@ the Mixpanel UI:
 Start any query with this keyword, and extend is as long as you need.
 This method accept a hash as first parameter where each pair of key/value are traslated
 to "key == value" (*equals_to*), a second parameter may change union word:
+
 ```ruby
 Mixpanel.where(country: 'Spain', gender: 'Female').to_s
 => "(properties[\"country\"] == \"Spain\" and properties[\"gender\"] == \"Female\")"
@@ -69,6 +112,7 @@ Mixpanel.where({country: 'Spain', gender: 'Female'}, 'or').to_s
 
 
 Then you may append any existent query build to complete your API query:
+
 ```ruby
 Mixpanel.where(country: 'Spain').or.is_set('source').to_s
 => "(properties[\"country\"] == \"Spain\") or (defined (properties[\"source\"]))"
@@ -76,6 +120,7 @@ Mixpanel.where(country: 'Spain').or.is_set('source').to_s
 
 ### on
 Use it as **by** statement on your UI, in order to group segmentation:
+
 ```ruby
 Mixpanel.on('country')
 => "properties[\"country\"]"
