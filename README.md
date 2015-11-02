@@ -1,6 +1,6 @@
 # Mixpanel Magic Lamp
 
-[![Gem Version](https://badge.fury.io/rb/mixpanel_magic_lamp.svg)](http://badge.fury.io/rb/mixpanel_magic_lamp)
+[![Gem Version](https://badge.fury.io/rb/mixpanel_magic_lamp.svg)](https://badge.fury.io/rb/mixpanel_magic_lamp)
 
 Rub the magic lamp and your desired Mixpanel ORM will appear!
 

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = MixpanelMagicLamp::VERSION
   s.authors     = ["Guillermo Guerrero"]
   s.email       = ["g.guerrero.bus@gmail.com"]
-  s.homepage    = "https://github.com/gguerrero/mixpanel_client_interface"
+  s.homepage    = "https://github.com/gguerrero/mixpanel_magic_lamp#mixpanel-magic-lamp"
   s.summary     = "Mixpanel client ORM!"
   s.description = "Mixpanel client ORM for easy querying and reporting data."
   s.license     = "MIT"
