@@ -92,31 +92,42 @@ Mixpanel.on('country')
 
 ### Builders
 * ```equals```:
+
   ```ruby
   Mixpanel.where.and.equals(country: 'Spain', user_type: 'human').to_s
   => "(properties[\"country\"] == \"Spain\" and properties[\"user_type\"] == \"human\")"
   ```
+
 * ```does_not_equal```
+
   ```ruby
   Mixpanel.where.and.does_not_equal(country: 'Spain', user_type: 'human')
   => "(properties[\"country\"] != \"Spain\" and properties[\"user_type\"] != \"human\")"
   ```
+
 * ```contains```
+
   ```ruby
   Mixpanel.where.and.contains(country: 'Spain', user_type: 'human').to_s
   => "(\"Spain\" in (properties[\"country\"]) and \"human\" in (properties[\"user_type\"]))"
   ```
+
 * ```does_not_contain```
+
   ```ruby
   Mixpanel.where.and.does_not_contain(country: 'Spain', user_type: 'human').to_s
   => "(not \"Spain\" in (properties[\"country\"]) and not \"human\" in (properties[\"user_type\"]))"
   ```
+
 * ```is_set```
+
   ```ruby
   Mixpanel.where.and.is_set(['country', 'user_type']).to_s
   => "(defined (properties[\"country\"]) and defined (properties[\"user_type\"]))"
   ```
+
 * ```is_not_set```
+
   ```ruby
   Mixpanel.where.and.is_not_set(['country', 'user_type']).to_s
   => "(not defined (properties[\"country\"]) and not defined (properties[\"user_type\"]))"
@@ -174,7 +185,7 @@ p page_visits[:data]
 
 
 ## Your own interface
-Now you master all the above concepts, the best thing you can do is to build you own interface model to extracting you reports:
+Now you master all the above concepts, the best thing you can do is to build your own interface model for extracting your reports:
 
 ```ruby
 module Mixpanel
