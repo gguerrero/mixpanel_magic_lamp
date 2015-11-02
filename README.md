@@ -138,7 +138,7 @@ Mixpanel.where.and.is_not_set(['country', 'user_type']).to_s
 ## Actions
 Mixpanel API client has a lot of possible actions, so far these are the supported actions:
 
-### Segementation
+### Segmentation
 Classic **Mixpanel** segmentation action, where you can specify *event name*, *from/to dates* and *any conditions* you want. Prepare and run as many request in parallel you need
 
 ```ruby
