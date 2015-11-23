@@ -66,7 +66,9 @@ module MixpanelMagicLamp
       private
       def join(args, union, exp)
         args = [args] unless args.is_a? Array or args.is_a? Hash
-        built_in = '(' + args.compact.map do |name, values|
+        (args.is_a? Array) ? args.compact! : args.reject! {|k,v| v.nil?}
+
+        built_in = '(' + args.map do |name, values|
           if values.nil?
             exp.gsub(':name', name)
           else
