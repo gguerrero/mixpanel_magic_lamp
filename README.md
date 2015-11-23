@@ -40,7 +40,7 @@ end
 ### Rails config generator
 Copy base config file on your **Rails app** by
 ```bash
-rails generator mixpanel_magic_lamp:config
+rails generate mixpanel_magic_lamp:config
 ```
 
 
